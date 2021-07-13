@@ -7,7 +7,7 @@ import (
 )
 
 type LRU struct {
-	mux      sync.Mutex
+	mux      sync.RWMutex
 	byAccess *list.List
 	byKey    map[string]*list.Element
 	maxSize  int
@@ -40,8 +40,8 @@ func NewLRUWithOptions(maxSize int, opts *Options) *LRU {
 
 // Get retrieves the value stored under the given key
 func (c *LRU) Get(key string) interface{} {
-	c.mux.Lock()
-	defer c.mux.Unlock()
+	c.mux.RLock()
+	defer c.mux.RUnlock()
 
 	elt := c.byKey[key]
 	if elt == nil {

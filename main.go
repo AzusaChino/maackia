@@ -1,12 +1,9 @@
 package main
 
 import (
-	kLog "github.com/go-kit/log"
-	"os"
+	"log"
 )
 
 func main() {
-	w := kLog.NewSyncWriter(os.Stderr)
-	logger := kLog.NewLogfmtLogger(w)
-	logger.Log("question", "what is the meaing of life?")
+	log.Fatalf("oh no, error %v", "is not happened")
 }
