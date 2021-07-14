@@ -3,12 +3,12 @@ package tlscfg
 import (
 	"crypto/tls"
 	"crypto/x509"
+	"fmt"
+	"github.com/fsnotify/fsnotify"
+	"go.uber.org/zap"
 	"io"
 	"path/filepath"
 	"sync"
-
-	"github.com/fsnotify/fsnotify"
-	"go.uber.org/zap"
 )
 
 type certWatcher struct {
@@ -23,8 +23,29 @@ var _ io.Closer = (*certWatcher)(nil)
 
 // constructor
 func newCertWatcher(opts Options, logger *zap.Logger) (*certWatcher, error) {
-
-	return nil, nil
+	var cert *tls.Certificate
+	if opts.CertPath != "" && opts.KeyPath != "" {
+		c, err := tls.LoadX509KeyPair(filepath.Clean(opts.CertPath), filepath.Clean(opts.KeyPath))
+		if err != nil {
+			return nil, fmt.Errorf("failed to load server TLS cert and key: %w", err)
+		}
+		cert = &c
+	}
+	watcher, err := fsnotify.NewWatcher()
+	if err != nil {
+		return nil, err
+	}
+	if err := addCertsToWatch(watcher, opts); err != nil {
+		watcher.Close()
+		return nil, err
+	}
+	return &certWatcher{
+		cert:    cert,
+		opts:    opts,
+		watcher: watcher,
+		logger:  logger,
+		mu:      &sync.RWMutex{},
+	}, nil
 }
 
 func (w *certWatcher) Close() error {
