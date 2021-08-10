@@ -4,7 +4,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/AzusaChino/makia/pkg/kafka/auth"
+	"github.com/AzusaChino/maackia/pkg/kafka/auth"
 	"github.com/Shopify/sarama"
 	cluster "github.com/bsm/sarama-cluster"
 	"go.uber.org/zap"

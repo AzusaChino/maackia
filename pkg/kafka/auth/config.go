@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/AzusaChino/makia/pkg/config/tlscfg"
+	"github.com/AzusaChino/maackia/pkg/config/tlscfg"
 	"github.com/Shopify/sarama"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"

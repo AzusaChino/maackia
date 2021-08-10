@@ -3,7 +3,7 @@ package auth
 import (
 	"fmt"
 
-	"github.com/AzusaChino/makia/pkg/config/tlscfg"
+	"github.com/AzusaChino/maackia/pkg/config/tlscfg"
 	"github.com/Shopify/sarama"
 	"go.uber.org/zap"
 )

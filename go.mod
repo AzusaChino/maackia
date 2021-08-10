@@ -1,4 +1,4 @@
-module github.com/AzusaChino/makia
+module github.com/AzusaChino/maackia
 
 go 1.15
 

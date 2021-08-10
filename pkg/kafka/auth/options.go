@@ -4,7 +4,7 @@ import (
 	"flag"
 	"strings"
 
-	"github.com/AzusaChino/makia/pkg/config/tlscfg"
+	"github.com/AzusaChino/maackia/pkg/config/tlscfg"
 )
 
 const (

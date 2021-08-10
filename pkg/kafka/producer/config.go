@@ -3,7 +3,7 @@ package producer
 import (
 	"time"
 
-	"github.com/AzusaChino/makia/pkg/kafka/auth"
+	"github.com/AzusaChino/maackia/pkg/kafka/auth"
 	"github.com/Shopify/sarama"
 	"go.uber.org/zap"
 )
