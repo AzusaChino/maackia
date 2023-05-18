@@ -1,0 +1,10 @@
+version: "3"
+
+tasks:
+  build:
+    cmds:
+      - go build
+      - docker build -t maackia:{.VER} .
+  protoc:
+    cmds:
+      - protoc --go_out=. --go-grpc_out=. ./protos/*.proto

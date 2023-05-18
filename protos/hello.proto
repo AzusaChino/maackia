@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "/protobuf/hello";
+
+package hello;
+
+service Hello {
+    rpc SayHello(HelloReq) returns (HelloRes) {}
+}
+
+message HelloReq {
+    string name = 1;
+}
+
+message HelloRes {
+    int32 code = 1;
+    string message = 2;
+}
